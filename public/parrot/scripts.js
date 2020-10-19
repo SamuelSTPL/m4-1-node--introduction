@@ -26,10 +26,15 @@ const sendMessage = (event) => {
   const message = { author: 'user', text: messageInput.value };
   updateConversation(message);
 
-  fetch('/parrot-message')
+  // const queryString = window.location.search;
+  // console.log(queryString)
+  // const urlParams = new URLSearchParams(queryString)
+
+  fetch(`/parrot-message/?message=${message.text}`)
+
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       updateConversation(data.message);
     });
 };
